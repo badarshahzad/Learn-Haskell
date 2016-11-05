@@ -1,0 +1,78 @@
+---------------Q 1----------------
+
+slope (x1,y1) (x2,y2) = dy / dx
+                    where dy = y2-y1
+                          dx = x2-x1
+
+---------------Q 2----------------
+
+reciproc:: (Fractional a) => a -> a
+reciproc n = 1/n
+
+---------------Q 3----------------
+
+abst::Int->Int
+abst a =
+         if a>=0 then a else -a
+
+----(b)Guards----
+abst'::Int->Int
+abst' a
+ | a>= 0      = a
+ | otherwise  = -a
+
+---------------Q 4----------------
+
+----(a)Conditional Expressions----
+signNumb::Int->Int
+signNumb a = 
+             if a<0 then -1 else
+                if a==0 then 0 else 1
+
+----(b)Guards----
+signNumb'::Int->Int
+signNumb' a
+ | a<0 = -1
+ | a==0 = 0
+ | a>0 = 1
+
+---------------Q 5----------------
+
+threeDiff::Int->Int->Int->Bool
+threeDiff a b c = not(a==b) && not(b==c) && not(a==c)
+
+---------------Q 6----------------
+----(a)Conditional Expressions----
+
+maxOfThree::Int->Int->Int->Int
+maxOfThree a b c = if (a>=b && b>=c) then a else
+                      if(b>=c) then b else c
+
+----(b)Guards----
+
+maxOfThree'::Int->Int->Int->Int
+maxOfThree' a b c 
+ | (a>=b && b>=c) = a 
+ | b>=c           = b 
+ | otherwise      = c
+
+
+---------------Q 7----------------
+----(a)Pattern matching----
+
+intToStr::Int ->String
+intToStr 1 = "One"
+intToStr 2 = "Two"
+intToStr 3 = "Three"
+intToStr 4 = "Four"
+intToStr 5 = "Five"
+intToStr x = "Not in the give range"
+
+----(b)Guards----
+intToStr' x
+ | x==1          = "One"
+ | x==2          = "Two"
+ | x==3          = "Three"
+ | x==4          = "Four"
+ | x==5          = "Five"
+ | otherwise  = "Not in the give range"
