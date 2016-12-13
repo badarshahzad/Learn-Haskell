@@ -1,0 +1,133 @@
+--------------Q 1----------------
+
+enumFrom' :: Int -> [Int]
+enumFrom' n = n:enumFrom' (n+1)
+
+---------------Q 2----------------
+
+factorial::(Ord a, Num a) => a ->a 
+factorial n
+ |n==0      = 1
+ |n>0       = n * factorial(n-1)
+ |otherwise = 0
+
+sumFac::Int->Int
+sumFac 0 = 1
+sumFac n = factorial n + sumFac (n-1)
+
+---------------Q 3----------------
+
+----(a)Remainder----
+remainder::Int->Int->Int 
+remainder m n 
+ | m<n      = m
+ |otherwise = remainder (m-n) n
+
+----(b)divider----
+
+divider::Int->Int->Int 
+divider m n 
+ | m<n      = 0
+ |otherwise = 1 + divider (m-n) n
+
+---------------Q 4----------------
+
+(^^^) :: Int->Int->Int
+m^^^1 = m
+m^^^n = m*(m^^^(n-1))
+
+---------------Q 5----------------
+
+----(a)init----
+init'::[a]->[a]
+init' (x:[]) = []
+init' (x:xs)   = x:init' xs
+
+----(b)replicate----
+replicate'::Int->a->[a]
+replicate' 0 x = []
+replicate' n x = x:replicate' (n-1) x
+
+---------------Q 6----------------
+
+zip' :: [a] -> [b] -> [(a,b)]
+zip' [] ys = []
+zip' xs [] = []
+zip' (x:xs) (y:ys) = (x,y) : zip' xs ys
+
+---------------Q 9----------------
+
+pairs :: [a] -> [(a,a)]
+pairs xs = zip xs (tail xs)
+
+---------------Q 11----------------
+
+zip3'::[a]->[b]->[c]->[(a,b,c)]
+zip3' [] _ _ = []
+zip3' _ [] _ = []
+zip3' _ _ [] = []
+zip3' (x:xs) (y:ys) (z:zs) = (x,y,z):zip3' xs ys zs
+
+---------------Q 12----------------
+------- Using List Comprehension
+dot :: Num a => [a] -> [a] -> a
+dot xs ys = sum [ x*y | (x,y) <- zip' xs ys ]
+
+------- Recursive ------------
+
+dotRec :: Num a => [a] -> [a] -> a
+dotRec [] [] = 0
+dotRec (x:xs) (y:ys) = x*y + dotRec xs ys
+
+---------------Q 13----------------
+
+myOR::[Bool]->Bool
+myOR [] = False
+myOR (x:xs) = x || myOR xs
+
+---------------Q 14----------------
+---------- using let-----------	
+qsort :: (Ord a) => [a] -> [a]  
+qsort [] = []  
+qsort (x:xs) =   
+    let smallerSorted = qsort [a | a <- xs, a <= x]  
+        biggerSorted = qsort [a | a <- xs, a > x]  
+    in  smallerSorted ++ [x] ++ biggerSorted
+
+---------- using where -----------	
+qsort' :: (Ord a) => [a] -> [a]  
+qsort' [] = []  
+qsort' (x:xs) = smallerSorted ++ [x] ++ biggerSorted 
+    where smallerSorted = qsort [a | a <- xs, a <= x]  
+          biggerSorted = qsort [a | a <- xs, a > x]  
+    
+---------------Q 15----------------
+
+halve::[a]->([a],[a])
+halve xs = (take (n`div`2) xs, drop (n`div`2) xs)
+           where n = length xs
+
+merge::Ord a=> [a]->[a]->[a]
+merge [] xs = xs
+merge xs [] = xs
+merge (x:xs) (y:ys) 
+ | x<y      = x:merge xs (y:ys)
+ |otherwise = y:merge (x:xs) ys  
+
+msort::Ord a => [a]->[a]
+msort xs 
+ |(length xs)>1 = merge (msort ls) (msort rs)
+ | otherwise    = xs
+ where (ls,rs) = halve xs
+
+---------------Q 16----------------
+
+insert::Int->[Int]->[Int]
+insert x  []    = [x]
+insert x (y:ys)  
+ | x<y      = x:y:ys
+ |otherwise = y: insert x ys
+ 
+isort::[Int]->[Int]
+isort []     = []
+isort (x:xs) = insert x (isort xs)
