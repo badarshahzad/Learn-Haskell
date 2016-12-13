@@ -1,6 +1,10 @@
-# Learn-Haskell
+
+# Learn-Haskell  :+1:
 This repository consists of almost all exercises and solutions. You can view the *Haskell* step by step
-learning functions. 
+learning materials in weeks folders. Solution can be get from solution folder.
+
+[Cheat Sheet for Haskell Commands](https://github.com/badarshahzad/Learn-Haskell/blob/master/CheatSheet.pdf)
+
 
 # Important Functions: 
 
@@ -9,3 +13,5 @@ learning functions.
 ### Fold Right & Fold Left
 ### Quick Sort
 ### Merge Sort
+
+![Cheat Sheet for Haskell Commands](/CheatSheet.pdf)
