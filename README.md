@@ -14,4 +14,4 @@ learning materials in weeks folders. Solution can be get from solution folder.
 ### Quick Sort
 ### Merge Sort
 
-![Cheat Sheet for Haskell Commands](/CheatSheet.pdf)
+![Cheat Sheet for Haskell Commands](CheatSheet.pdf)
